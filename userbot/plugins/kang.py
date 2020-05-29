@@ -29,7 +29,7 @@ from telethon.tl.types import (
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("lund ?(.*)"))
+@borg.on(admin_cmd(outgoing=True, pattern="lund ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -119,7 +119,7 @@ async def _(event):
 
     await event.edit(f"[⬛⬛⬛⬛⬛⬛⬛\n⬛⬛▶️⬛⬛⬛⬛\n⬛⬛▶️▶️⬛⬛⬛\n⬛⬛▶️▶️▶️⬛⬛\n⬛⬛▶️▶️⬛⬛⬛\n⬛⬛▶️⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛](t.me/addstickers/{packshortname})")
 
-@borg.on(admin_cmd("packinfo"))
+@borg.on(admin_cmd(outgoing=True, pattern="packinfo"))
 async def _(event):
     if event.fwd_from:
         return
@@ -155,7 +155,7 @@ async def _(event):
                      f"**Emojis In Pack:** {' '.join(pack_emojis)}")
 
 
-@borg.on(admin_cmd("loda ?(.*)"))
+@borg.on(admin_cmd(outgoing=True, pattern="loda ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
