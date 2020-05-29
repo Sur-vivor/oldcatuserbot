@@ -64,7 +64,9 @@ async def _(event):
 🌐Verified: {}
 🤖Bot: {}
 👥Groups in Common: {}
+
 List Of Telegram Data Centres:
+
 DC1 : Miami FL, USA
 DC2 : Amsterdam, NL
 DC3 : Miami FL, USA
