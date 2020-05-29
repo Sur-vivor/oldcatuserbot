@@ -439,17 +439,17 @@ CRI = [
 ]
 
 SLAP_TEMPLATES = [
-    "{hits} {victim} with a {item}.",
-    "{hits} {victim} in the face with a {item}.",
-    "{hits} {victim} around a bit with a {item}.",
-    "{throws} a {item} at {victim}.",
-    "grabs a {item} and {throws} it at {victim}'s face.",
-    "launches a {item} in {victim}'s general direction.",
-    "starts slapping {victim} silly with a {item}.",
-    "pins {victim} down and repeatedly {hits} them with a {item}.",
-    "grabs up a {item} and {hits} {victim} with it.",
-    "ties {victim} to a chair and {throws} a {item} at them.",
-    "gave a friendly push to help {victim} learn to swim in lava."
+    "{user1} {hits} {victim} with a {item}.",
+    "{user1} {hits} {victim} in the face with a {item}.",
+    "{user1} {hits} {victim} around a bit with a {item}.",
+    "{user1} {throws} a {item} at {victim}.",
+    "{user1} grabs a {item} and {throws} it at {victim}'s face.",
+    "{user1} launches a {item} in {victim}'s general direction.",
+    "{user1} starts slapping {victim} silly with a {item}.",
+    "{user1} pins {victim} down and repeatedly {hits} them with a {item}.",
+    "{user1} grabs up a {item} and {hits} {victim} with it.",
+    "{user1} ties {victim} to a chair and {throws} a {item} at them.",
+    "{user1} gave a friendly push to help {victim} learn to swim in lava."
 ]
 
 ITEMS = [
@@ -580,7 +580,8 @@ async def get_user(event):
             return None
 
     return replied_user
-
+			  
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Survivor"
 async def slap(replied_user, event):
     """ Construct a funny slap sentence !! """
     user_id = replied_user.user.id
@@ -597,7 +598,7 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "..." + temp.format(victim=slapped, item=item, hits=hit, throws=throw)
+    caption = "..." + temp.format(user1=DEFAULTUSER, victim=slapped, item=item, hits=hit, throws=throw)
 
     return caption
 
@@ -647,7 +648,7 @@ async def insult(e):
 @register(outgoing=True, pattern="^.repo$")
 async def source(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("Click [here](https://github.com/sandy1709/catuserbot) to open this lit af repo.")
+        await e.edit("Click [here](https://github.com/Sur-vivor/CatUserbot) to open this lit af repo.")
 			  
 
 			  
