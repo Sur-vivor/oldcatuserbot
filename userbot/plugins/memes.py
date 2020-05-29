@@ -23,6 +23,7 @@ from cowpy import cow
 
 from userbot import CMD_HELP
 from userbot.utils import register
+from userbot import ALIVE_NAME
 
 # ================= CONSTANT =================
 RENDISTR = [
