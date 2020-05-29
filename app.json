@@ -1,7 +1,7 @@
 {
   "name": "π.$",
   "description": "Userbot created by a SNAPDRAGON and custom fork by https://t.me/mrconfused contact @mrconfused for support",
-  "logo": "https://telegra.ph/file/f8ab330abd9a8a43f5a40.jpg",
+  "logo": "https://telegra.ph/file/c33e6ab828c2e2fde385b.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -78,7 +78,7 @@
     },
     "UB_BLACK_LIST_CHAT": {
       "description": "set blacklist_chats where you do not want userbot features",
-      "value": "-1051754159",
+      "value": "",
       "required": false
     },
     "CHROME_BIN": {
