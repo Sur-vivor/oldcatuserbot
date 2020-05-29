@@ -9,7 +9,7 @@ from telethon.utils import get_input_location
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("ppg ?(.*)"))
+@borg.on(admin_cmd(outgoing=True, pattern="ppg ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
