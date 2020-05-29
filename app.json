@@ -9,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/sandy1709/catuserbot/",
+  "repository": "https://github.com/Sur-vivor/CatUserbot/",
   "website": "#TODO",
   "success_url": "#TODO",
   "env": {
@@ -67,7 +67,7 @@
       "required": false
     },
     "GIT_REPO_NAME": {
-      "description": "Your repo name Example: sandy1709/catuserbot, but GITHUB_ACCESS_TOKEN must be setup first.",
+      "description": "Your repo name Example: Sur-vivor/CatUserbot, but GITHUB_ACCESS_TOKEN must be setup first.",
       "value": "",
       "required": false
     },
