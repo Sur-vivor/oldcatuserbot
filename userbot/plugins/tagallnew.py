@@ -19,7 +19,7 @@ async def _(event):
     await event.delete()
 
 
-@borg.on(admin_cmd((pattern=r"admin", outgoing=True))
+@borg.on(admin_cmd(pattern=r"admin", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
