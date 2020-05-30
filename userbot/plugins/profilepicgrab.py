@@ -48,7 +48,7 @@ async def _(event):
         location = str(e)
     caption = """Profile Pic Grabber By @Sur_vivor
 
-Rendi: <a href='tg://user?id={}'>{}</a>
+Person: <a href='tg://user?id={}'>{}</a>
 """.format(
         user_id,
         user_id,
