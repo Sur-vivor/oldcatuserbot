@@ -10,6 +10,7 @@ from collections import deque
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot.events import register
 from userbot.utils import admin_cmd
+from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 
 @borg.on(admin_cmd(pattern="leave"))
 async def leave(e):
