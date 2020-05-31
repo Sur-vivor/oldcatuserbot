@@ -24,7 +24,7 @@ async def repcf(event):
         reply = await event.get_reply_message()
         msg = reply.text
         text_rep = session.think_thought((session_id, msg))
-        await event.edit(" {0}".format(text_rep))
+        await event.edit("💫{0}".format(text_rep))
     except Exception as e:
         await event.edit(str(e))
 
@@ -73,25 +73,9 @@ async def user(event):
             for i in range(len(text_rep)):
                 wait_time = wait_time + 0.1
             await asyncio.sleep(wait_time)
-            await event.reply(text_rep)
+            await event.reply("💫"+text_rep)
     except KeyError:
         return
-
-@command(pattern="^.listcf", outgoing=True)
-async def lydia_list(event):
-	if event.fwd_from:
-		return
-	if Var.LYDIA_API_KEY is None:
-		await event.edit("Make Sure You've LYDIA_API env vars Correctly.")	
-		return		
-	await event.edit("Processing...")
-	msg = "**Auto-Chat:**"
-	cur = lydia.find({})
-	for c in cur:
-		user_id = str(c['user_id'])
-		msg += "\n__User:__ [{}](tg://user?id={})".format(user_id,user_id)
-		msg += "\n__Chat:__ `{}`\n".format(str(c['chat_id']))	
-	await event.edit(msg)
     
 CMD_HELP.update({
     "lydia":
