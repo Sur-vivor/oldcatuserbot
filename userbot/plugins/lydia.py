@@ -14,12 +14,12 @@ from coffeehouse.lydia import LydiaAI
 from coffeehouse.api import API
 import asyncio
 import io
-from sql_helpers.lydia_ai_sql import get_s, get_all_s, add_s, remove_s
+from userbot.plugins.sql_helper.lydia_ai_sql import get_s, get_all_s, add_s, remove_s
 from time import time
-from uniborg.util import admin_cmd
+from userbot.utils import admin_cmd
 
-if Config.LYDIA_API is not None:
-    api_key = Config.LYDIA_API
+if Config.LYDIA_API_KEY is not None:
+    api_key = Config.LYDIA_API_KEY
     # Create the coffeehouse API
     coffeehouse_api = API(api_key)
     # Create Lydia instance
@@ -30,15 +30,15 @@ if Config.LYDIA_API is not None:
 async def lydia_disable_enable(event):
     if event.fwd_from:
         return
-    if Config.LYDIA_API is None:
-        await event.edit("please add required `LYDIA_API` env var")
+    if Config.LYDIA_API_KEY is None:
+        await event.edit("Please add required `LYDIA_API_KEY` env var")
         return
     if event.reply_to_msg_id is not None:
         input_str = event.pattern_match.group(1)
         reply_msg = await event.get_reply_message()
         user_id = reply_msg.from_id
         chat_id = event.chat_id
-        await event.edit("hoi")
+        await event.edit("Hoi")
         if input_str == "e":
             # Create a new chat session (Like a conversation)
             session = lydia.create_session()
@@ -48,7 +48,7 @@ async def lydia_disable_enable(event):
             # logger.info("Session Language: {0}".format(str(session.language)))
             # logger.info("Session Expires: {0}".format(str(session.expires)))
             logger.info(add_s(user_id, chat_id, session.id, session.expires))
-            await event.edit(f"hi")
+            await event.edit(f"Hello")
         elif input_str == "d":
             logger.info(remove_s(user_id, chat_id))
             await event.edit(f"[__signal lost__](tg://user?id={user_id})")
@@ -83,7 +83,7 @@ async def lydia_disable_enable(event):
 async def on_new_message(event):
     if event.chat_id in Config.UB_BLACK_LIST_CHAT:
         return
-    if Config.LYDIA_API is None:
+    if Config.LYDIA_API_KEY is None:
         return
     reply = await event.get_reply_message()
     if reply is None:
