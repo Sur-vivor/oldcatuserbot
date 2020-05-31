@@ -77,7 +77,7 @@ async def user(event):
     except KeyError:
         return
 
-@command(pattern="^.remcf", outgoing=True)
+@command(pattern="^.listcf", outgoing=True)
 async def lydia_list(event):
 	if event.fwd_from:
 		return
