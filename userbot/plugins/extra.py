@@ -10,7 +10,6 @@ from collections import deque
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot.events import register
 from userbot.utils import admin_cmd
-from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 
 @borg.on(admin_cmd(pattern="leave"))
 async def leave(e):
@@ -51,11 +50,12 @@ async def _(event):
 		
 
 @borg.on(admin_cmd("myusernames"))
-
-async def mine(event):
-    """ For .reserved command, get a list of your reserved usernames. """
-    result = await bot(GetAdminedPublicChannelsRequest())
+#@register(outgoing=True, pattern="^.myusernames$")
+async def _(event):
+    if event.fwd_from:
+        return
+    result = await bot(functions.channels.GetAdminedPublicChannelsRequest())
     output_str = ""
     for channel_obj in result.chats:
-        output_str += f"{channel_obj.title}\n@{channel_obj.username}\n\n"
+        output_str += f"- {channel_obj.title} @{channel_obj.username} \n"
     await event.edit(output_str)
