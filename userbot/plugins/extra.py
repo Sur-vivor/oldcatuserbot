@@ -49,17 +49,12 @@ async def _(event):
 		deq.rotate(1)
 		
 
+@borg.on(admin_cmd("myusernames"))
 
-@borg.on(admin_cmd(pattern="myusernames"))
-#@register(outgoing=True, pattern="^.myusernames$")
-async def _(event):
-    if event.fwd_from:
-        return
-    result = await bot(functions.channels.GetAdminedPublicChannelsRequest())
+async def mine(event):
+    """ For .reserved command, get a list of your reserved usernames. """
+    result = await bot(GetAdminedPublicChannelsRequest())
     output_str = ""
     for channel_obj in result.chats:
-        output_str += f"- {channel_obj.title} @{channel_obj.username} \n"
+        output_str += f"{channel_obj.title}\n@{channel_obj.username}\n\n"
     await event.edit(output_str)
-
-
-
