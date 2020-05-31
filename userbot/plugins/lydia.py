@@ -2,6 +2,7 @@ import coffeehouse
 from coffeehouse.lydia import LydiaAI
 import asyncio
 from telethon import events
+from userbot import CMD_HELP
 
 # Non-SQL Mode
 ACC_LYDIA = {}
@@ -75,3 +76,14 @@ async def user(event):
             await event.reply(text_rep)
     except KeyError:
         return
+    
+CMD_HELP.update({
+    "lydia":
+    ".addcf reply to a user\
+    \nUSAGE: your bot will auto reply to the tagged user until you stops it by `.remcf`\
+    \n\n.remcf reply to the user to who you want to disable the lydia\
+    \n\n for functioning this plugin you need to set the heroku var\
+    \n the key is `LYDIA_API_KEY` and get var from `https://coffeehouse.intellivoid.net/`\
+"
+})
+    
