@@ -77,7 +77,7 @@ async def user(event):
     except KeyError:
         return
 
-@borg.on(admin_cmd(pattern="listcf", allow_sudo=True))
+@command(pattern="^.remcf", outgoing=True)
 async def lydia_list(event):
 	if event.fwd_from:
 		return
