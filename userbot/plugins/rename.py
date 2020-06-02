@@ -41,7 +41,7 @@ def get_video_thumb(file, output=None, width=90):
         return output
 
 
-@borg.on(admin_cmd("rename (.*)"))
+@borg.on(admin_cmd(pattern="rename (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -58,7 +58,10 @@ async def _(event):
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await borg.download_media(
             reply_message,
-            downloaded_file_name
+            downloaded_file_name,
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                 progress(d, t, event, c_time, "trying to download")
+            )
         )
         end = datetime.now()
         ms = (end - start).seconds
