@@ -17,7 +17,8 @@ from telethon import events
 from telethon.tl.types import DocumentAttributeVideo
 from telethon.errors import MessageNotModifiedError
 import time
-from userbot.utils import progress, humanbytes, time_formatter, admin_cmd
+from userbot.utils import admin_cmd
+from userbot.utils import progress, humanbytes, time_formatter
 import io
 import math
 import os
@@ -53,7 +54,7 @@ async def _(event):
         start = datetime.now()
         file_name = input_str
         reply_message = await event.get_reply_message()
-        c_time = time.time()
+       # c_time = time.time()
         to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await borg.download_media(
@@ -73,7 +74,7 @@ async def _(event):
         await event.edit("Syntax // `.rename file.name` as reply to a Telegram media")
 
 
-@borg.on(admin_cmd("rnupload (.*)"))
+@borg.on(admin_cmd(pattern="rnupload (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -92,7 +93,11 @@ async def _(event):
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await borg.download_media(
             reply_message,
-            downloaded_file_name
+            downloaded_file_name,
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                  progress(d, t, event, c_time, "trying to download")
+            )
+         
         )
         end = datetime.now()
         ms_one = (end - start).seconds
@@ -106,6 +111,9 @@ async def _(event):
                 allow_cache=False,
                 reply_to=event.message.id,
                 thumb=thumb,
+                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                    progress(d, t, mone, c_time, "trying to download")
+                )
                 
             )
             end_two = datetime.now()
@@ -118,7 +126,7 @@ async def _(event):
         await event.edit("Syntax // .rnupload file.name as reply to a Telegram media")
 
 
-@borg.on(admin_cmd("rnstreamupload (.*)"))
+@borg.on(admin_cmd(pattern="rnstreamupload (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -135,7 +143,10 @@ async def _(event):
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await borg.download_media(
             reply_message,
-            downloaded_file_name
+            downloaded_file_name,
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                  progress(d, t, event, c_time, "trying to download")
+            )
         )
         end_one = datetime.now()
         ms_one = (end_one - start).seconds
@@ -170,7 +181,7 @@ async def _(event):
                     event.chat_id,
                     downloaded_file_name,
                     thumb=thumb,
-                    caption="reuploaded by [GujjuBot](https://www.github.com/japarmar/GujjuBot",
+                    caption="reuploaded by cat",
                     force_document=False,
                     allow_cache=False,
                     reply_to=event.message.id,
@@ -195,7 +206,7 @@ async def _(event):
             await event.edit("File Not Found {}".format(input_str))
     else:
         await event.edit("Syntax // .rnstreamupload file.name as reply to a Telegram media")
-        
+
         
 @borg.on(admin_cmd(pattern="rndlup (.*)"))
 async def _(event):
@@ -270,4 +281,4 @@ async def _(event):
         else:
             await event.edit("File Not Found {}".format(input_str))
     else:
-        await event.edit("Incorrect URL\n {}".format(input_str))
+        await event.edit("Incorrect URL\n {}".format(input_str))        
