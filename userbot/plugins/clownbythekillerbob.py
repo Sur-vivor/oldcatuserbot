@@ -39,7 +39,7 @@ async def _(event):
         animation_chars = [
         
 
-            "COMMAND CREATE BY @The_KILLER_BOB",
+            "COMMAND CREATE BY @Sur_vivor",
             "🤡️",
             "🤡🤡",
             "🤡🤡🤡",
