@@ -213,4 +213,4 @@ CMD_HELP.update({
 \nuseage:set of funny monkey bio's\
 \n\n for stoping these type .restart and change them manually\
 "
-})         
+})        
