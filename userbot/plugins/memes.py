@@ -603,6 +603,8 @@ HIT = [
     "bashes",
 ]
 
+WHERE = ["in the chest", "on the head", "on the butt", "on the crotch"]
+
 # ===========================================
 
 
@@ -700,8 +702,9 @@ async def slap(replied_user, event):
     item = random.choice(ITEMS)
     hit = random.choice(HIT)
     throw = random.choice(THROW)
+    where = random.choice(WHERE)		  
 
-    caption = temp.format(user1=DEFAULTUSER, victim=slapped, item=item, hits=hit, throws=throw)
+    caption = temp.format(user1=DEFAULTUSER, victim=slapped, item=item, hits=hit, throws=throw, where=where)
 
     return caption
 
