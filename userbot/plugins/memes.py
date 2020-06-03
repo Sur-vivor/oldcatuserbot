@@ -996,5 +996,7 @@ CMD_HELP.update({
 \nUsage: Protects you from unwanted peeps.\
 \n\n.gey\
 \nUsage: if you are gey.\
+\n\n.pkill\
+\n\n.bt\
 "
 })
