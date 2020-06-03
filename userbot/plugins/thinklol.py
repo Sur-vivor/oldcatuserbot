@@ -7,7 +7,7 @@ from collections import deque
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="lol", outgoing=True))
+@borg.on(admin_cmd(pattern="pling", outgoing=True))
 async def _(event):
 	if event.fwd_from:
 		return
