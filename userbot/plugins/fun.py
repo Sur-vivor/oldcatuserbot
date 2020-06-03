@@ -347,7 +347,7 @@ async def shalom(e):
         "\n💛💛💛💛💛💛💛💛💛")
 
 
-@register(outgoing=True, disable_errors=True, pattern="^.soler$")
+@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 async def _(event):
 
     if event.fwd_from:
@@ -358,9 +358,9 @@ async def _(event):
 
     animation_ttl = range(0, 30)
 
-   # input_str = event.pattern_match.group(1)
+    input_str = event.pattern_match.group(1)
 
-   # if input_str == "chu":
+    if input_str == "solar":
 
     await event.edit("searchin sun......")
 
@@ -519,7 +519,7 @@ async def _(event):
         await event.edit(animation_chars[i % 30])
 
 
-@register(outgoing=True, disable_errors=True, pattern="^.bomb(?: |$)(.*)")
+@register(outgoing=True, pattern="^.bomb(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -553,7 +553,7 @@ async def _(event):
 
 
 
-@register(outgoing=True, disable_errors=True, pattern="^.play$")
+@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 async def _(event):
 
     if event.fwd_from:
@@ -564,9 +564,9 @@ async def _(event):
 
     animation_ttl = range(0, 30)
 
-   # input_str = event.pattern_match.group(1)
+    input_str = event.pattern_match.group(1)
 
-   # if input_str == "chu":
+    if input_str == "play":
 
     await event.edit(".....")
 
@@ -599,7 +599,7 @@ async def _(event):
 
 
 
-@register(outgoing=True, disable_errors=True, pattern="^.play1$")
+@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 async def _(event):
 
     if event.fwd_from:
@@ -610,9 +610,9 @@ async def _(event):
 
     animation_ttl = range(0, 30)
 
-   # input_str = event.pattern_match.group(1)
+    input_str = event.pattern_match.group(1)
 
-   # if input_str == "chu":
+    if input_str == "play1":
 
     await event.edit(".....")
 
