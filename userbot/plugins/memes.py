@@ -950,7 +950,7 @@ CMD_HELP.update({
 \nUsage: kensar clock animation.\
 \n\n.earth\
 \nUsage: kensar earth animation.\
-\n\n.hi\
+\n\n.hey\
 \nUsage: Greet everyone!\
 \n\n.coinflip <heads/tails>\
 \nUsage: Flip a coin !!\
@@ -994,5 +994,7 @@ CMD_HELP.update({
 \nUsage: If you think you're pro, try this.\
 \n\n.abuse\
 \nUsage: Protects you from unwanted peeps.\
+\n\n.gey\
+\nUsage: if you are gey.\
 "
 })
