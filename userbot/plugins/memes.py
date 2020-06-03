@@ -653,10 +653,7 @@ async def source(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("Click [here](https://github.com/Sur-vivor/CatUserbot) to open this lit af repo.")
 			  
-
-			  
-
-
+		     
 @register(outgoing=True, pattern="^.hey$")
 async def hoi(hello):
     """ Greet everyone! """
