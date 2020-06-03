@@ -51,7 +51,148 @@ NOOBSTR = [
     "`Kysa kysaaaa haaan? Phir MAAR nhi Khayega tu?`",
     "`Zikr Jinka hota hai galiyo meh woh bhosdika ajj paya gya naliyo me`",
 ]
+ZALG_LIST = [["̖",
+              " ̗",
+              " ̘",
+              " ̙",
+              " ̜",
+              " ̝",
+              " ̞",
+              " ̟",
+              " ̠",
+              " ̤",
+              " ̥",
+              " ̦",
+              " ̩",
+              " ̪",
+              " ̫",
+              " ̬",
+              " ̭",
+              " ̮",
+              " ̯",
+              " ̰",
+              " ̱",
+              " ̲",
+              " ̳",
+              " ̹",
+              " ̺",
+              " ̻",
+              " ̼",
+              " ͅ",
+              " ͇",
+              " ͈",
+              " ͉",
+              " ͍",
+              " ͎",
+              " ͓",
+              " ͔",
+              " ͕",
+              " ͖",
+              " ͙",
+              " ͚",
+              " ",
+              ],
+             [" ̍",
+              " ̎",
+              " ̄",
+              " ̅",
+              " ̿",
+              " ̑",
+              " ̆",
+              " ̐",
+              " ͒",
+              " ͗",
+              " ͑",
+              " ̇",
+              " ̈",
+              " ̊",
+              " ͂",
+              " ̓",
+              " ̈́",
+              " ͊",
+              " ͋",
+              " ͌",
+              " ̃",
+              " ̂",
+              " ̌",
+              " ͐",
+              " ́",
+              " ̋",
+              " ̏",
+              " ̽",
+              " ̉",
+              " ͣ",
+              " ͤ",
+              " ͥ",
+              " ͦ",
+              " ͧ",
+              " ͨ",
+              " ͩ",
+              " ͪ",
+              " ͫ",
+              " ͬ",
+              " ͭ",
+              " ͮ",
+              " ͯ",
+              " ̾",
+              " ͛",
+              " ͆",
+              " ̚",
+              ],
+             [" ̕",
+              " ̛",
+              " ̀",
+              " ́",
+              " ͘",
+              " ̡",
+              " ̢",
+              " ̧",
+              " ̨",
+              " ̴",
+              " ̵",
+              " ̶",
+              " ͜",
+              " ͝",
+              " ͞",
+              " ͟",
+              " ͠",
+              " ͢",
+              " ̸",
+              " ̷",
+              " ͡",
+              ]]
 
+
+EMOJIS = [
+    "😂",
+    "😂",
+    "👌",
+    "✌",
+    "💞",
+    "👍",
+    "👌",
+    "💯",
+    "🎶",
+    "👀",
+    "😂",
+    "👓",
+    "👏",
+    "👐",
+    "🍕",
+    "💥",
+    "🍴",
+    "💦",
+    "💦",
+    "🍑",
+    "🍆",
+    "😩",
+    "😏",
+    "👉👌",
+    "👀",
+    "👅",
+    "😩",
+    "🚰",
+]
 
 INSULT_STRINGS = [
      "`Owww ... Such a stupid idiot.`",
@@ -636,16 +777,20 @@ async def fun(e):
         for j in range(10):
             t = t[:-1] + "_;"
             await e.edit(t)
-
+			  
+@register(outgoing=True, pattern="^.cry$")
+async def cry(e):
+    """ y u du dis, i cry everytime !! """
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit(random.choice(CRI)			  
 
 @register(outgoing=True, pattern="^.insult$")
 async def insult(e):
     """ I make you cry !! """
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit(random.choice(INSULT_STRINGS))
-
-
-			  
+		     
+		     
 @register(outgoing=True, pattern="^.repo$")
 async def source(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
@@ -661,8 +806,26 @@ async def hoi(hello):
     if not hello.text[0].isalpha() and hello.text[0] not in ("/", "#", "@", "!"):
         await hello.edit(random.choice(HELLOSTR))
 			  
+@register(outgoing=True, pattern="^.pkill$")
+async def killing (killed):
+    """ Dont Kill Too much -_-"""
+    if not killed.text[0].isalpha() and killed.text[0] not in ("/", "#", "@", "!"):
+        if await killed.get_reply_message():
+            await killed.edit(
+                "`Targeted user killed by Headshot 😈......`\n"
+		"#Sad_Reacts_Onli\n"
+            )
 
-			  			  
+@register(outgoing=True, pattern="^.bt$")
+async def bluetext(bte):
+    """ Believe me, you will find this useful. """
+    if not bte.text[0].isalpha() and bte.text[0] not in ("/", "#", "@", "!"):
+        if await bte.get_reply_message():
+            await bte.edit(
+                "`BLUETEXT MUST CLICK.`\n"
+                "`Are you a stupid animal which is attracted to colours?`"
+            )
+		     
 @register(outgoing=True, pattern="^.rape$")
 async def raping (raped):
     """ Dont Rape Too much -_-"""
@@ -704,10 +867,16 @@ async def fuckedd (abusehard):
         reply_text = ABUSEHARD_STRING[index]
         await abusehard.edit(reply_text)
 			  
-
+@register(outgoing=True, pattern="^.gey$")
+async def geys (geyed):
+    """ Use only for gey ppl -_-"""
+    if not geyed.text[0].isalpha() and geyed.text[0] not in ("/", "#", "@", "!"):
+        index = random.randint(0, len(GEY_STRINGS) - 1)
+        reply_text = GEY_STRINGS[index]
+        await geyed.edit(reply_text)
 			  
 			  
-@register(outgoing=True, pattern="^.abusehim$")
+@register(outgoing=True, pattern="^.abuse$")
 async def abusing (abused):
     """ Dont Abuse Too much bsdk -_-"""
     if not abused.text[0].isalpha() and abused.text[0] not in ("/", "#", "@", "!"):
