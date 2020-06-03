@@ -640,13 +640,13 @@ async def fun(e):
 async def cry(e):
     """ y u du dis, i cry everytime !! """
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(random.choice(CRI)			  
-
+        await e.edit(random.choice(CRI)
+		     
 @register(outgoing=True, pattern="^.insult$")
 async def insult(e):
     """ I make you cry !! """
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(random.choice(INSULT_STRINGS))
+        await e.edit(random.choice(INSULT_STRINGS))		     
 		     		     
 @register(outgoing=True, pattern="^.repo$")
 async def source(e):
