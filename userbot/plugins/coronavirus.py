@@ -2,6 +2,7 @@
 Syntax: .coronavirus <country>"""
 from covid import Covid
 from userbot.utils import admin_cmd
+from userbot import CMD_HELP
 
 @borg.on(admin_cmd(pattern="coronavirus (.*)"))
 async def _(event):
@@ -19,3 +20,9 @@ def get_country_data(country, world):
         if country_data["country"] == country:
             return country_data
     return {"Status": "No information yet about this country!"}
+
+
+CMD_HELP.update({"coronavirus": "`.coronavirus` <country name> :\
+      \n USAGE:finds the covid data of the given country remember country name first letter must be capital. "
+}) 
+

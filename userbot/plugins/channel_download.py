@@ -20,11 +20,12 @@ async def get_media(event):
         os.makedirs("./temp/")
     except:
     	pass
-    channel_username= event.text
+    
+    catty = event.text
     command = ['ls','temp','|','wc','-l' ]
-    limit = channel_username[6:9]
+    limit = int(catty.split(' ')[1])
     print(limit)
-    channel_username = channel_username[11: ]
+    channel_username = str(catty.split(' ')[2])
     print(channel_username)
     await event.edit("Downloading Media From this Channel.")
     msgs = await borg.get_messages(channel_username, limit=int(limit))
@@ -42,9 +43,7 @@ async def get_media(event):
     output = output.replace("\n'","")
     await event.edit("Downloaded "+output+" files.")
              
-             
-             
-             
+         
              
              
 @borg.on(admin_cmd(pattern=r"geta"))
