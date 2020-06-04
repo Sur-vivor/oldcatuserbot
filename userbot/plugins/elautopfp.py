@@ -7,7 +7,7 @@ Command: `.epp`
 2) Ported By: @r4v4n4 (Legend)
 3) End Game Help By: @spechide
 NOTE: NO.4 IS A VIRUS WHICH HAD COME HERE ACCIDENTALLY
-4) Custom / Modified Plugin for some magical effects by this Legendary Guy @PhycoNinja13b 
+4) Custom / Modified Plugin for some magical effects by this Legendary Guy @Sur_vivor 
 
 
 #curse: who ever edits this credit section will goto hell
@@ -51,7 +51,7 @@ async def autopic(event):
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 23)
-        drawn_text.text((50, 400), current_time, font=fnt, fill=(230,230,250))
+        drawn_text.text((50, 600), current_time, font=fnt, fill=(230,230,250))
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
