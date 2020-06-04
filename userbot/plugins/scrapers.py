@@ -11,6 +11,7 @@ import asyncio
 import shutil
 from bs4 import BeautifulSoup
 import re
+import random
 from time import sleep
 from html import unescape
 from re import findall
@@ -47,7 +48,7 @@ BOTLOG = True
 LANG = "en"
 
 
-@register(outgoing=True, pattern="^.carbon")
+@register(outgoing=True, pattern="^.krb")
 async def carbon_api(e):
  if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
  
