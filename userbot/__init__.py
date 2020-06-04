@@ -2,8 +2,13 @@ import os
 import sys
 from telethon.sessions import StringSession
 from telethon import TelegramClient
-
 from var import Var
+from pylast import LastFMNetwork, md5
+from logging import basicConfig, getLogger, INFO, DEBUG
+from distutils.util import strtobool as sb
+from pySmartDL import SmartDL
+from dotenv import load_dotenv
+from requests import get
 
 os.system("pip install --upgrade pip")
 if Var.STRING_SESSION:
@@ -27,7 +32,7 @@ ENV = os.environ.get("ENV", False)
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
 import asyncio
-
+from userbot.helpers import memeshelper as memes
 import pylast
 from pySmartDL import SmartDL
 from requests import get
@@ -127,12 +132,12 @@ if bool(ENV):
     LASTFM_SECRET = os.environ.get("LASTFM_SECRET", None)
     LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME", None)
     LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD", None)
-    LASTFM_PASS = pylast.md5(LASTFM_PASSWORD_PLAIN)
-    if not LASTFM_USERNAME == "None":
-        lastfm = pylast.LastFMNetwork(api_key=LASTFM_API,
-                                      api_secret=LASTFM_SECRET,
-                                      username=LASTFM_USERNAME,
-                                      password_hash=LASTFM_PASS)
+    LASTFM_PASS = md5(LASTFM_PASSWORD_PLAIN)
+    if LASTFM_API and LASTFM_SECRET and LASTFM_USERNAME and LASTFM_PASS:
+        lastfm = LastFMNetwork(api_key=LASTFM_API,
+                               api_secret=LASTFM_SECRET,
+                               username=LASTFM_USERNAME,
+                               password_hash=LASTFM_PASS)
     else:
         lastfm = None
 
@@ -151,6 +156,8 @@ else:
 # and giving them correct perms to work properly.
 if not os.path.exists('bin'):
     os.mkdir('bin')
+    
+from userbot.helpers import fonts as fonts
 
 binaries = {
     "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown":
@@ -173,4 +180,5 @@ CMD_HELP = {}
 ISAFK = False
 AFKREASON = None
 # End of PaperPlaneExtended Support Vars
+
 
