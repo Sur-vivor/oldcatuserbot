@@ -22,7 +22,7 @@ USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n�
 
 
 if Var.PRIVATE_GROUP_ID is not None:
-    @command(pattern="^.approve ?(.*)")
+    @command(pattern="^.approvepm ?(.*)")
     async def approve_p_m(event):
         if event.fwd_from:
            return
@@ -57,7 +57,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                     await asyncio.sleep(3)
                     await rko.delete()
 
-    @command(pattern="^.disapprove ?(.*)")
+    @command(pattern="^.disapprovepm ?(.*)")
     async def disapprove_p_m(event):
         if event.fwd_from:
             return
@@ -70,7 +70,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                 pmpermit_sql.disapprove(chat.id)
                 await event.edit("disapproved to pm [{}](tg://user?id={})".format(firstname, chat.id))           
                 
-    @command(pattern="^.block ?(.*)")
+    @command(pattern="^.blockpm ?(.*)")
     async def block_p_m(event):
         if event.fwd_from:
             return
@@ -86,7 +86,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                 await event.client(functions.contacts.BlockRequest(chat.id))
 
 
-    @command(pattern="^.listapproved")
+    @command(pattern="^.listapprovedpm")
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -209,13 +209,13 @@ if Var.PRIVATE_GROUP_ID is not None:
 CMD_HELP.update({
     "pmpermit":
     "\
-.approve\
+.approvepm\
 \nUsage: Approves the mentioned/replied person to PM.\
-.disapprove\
+.disapprovepm\
 \nUsage: dispproves the mentioned/replied person to PM.\
-\n\n.block\
+\n\n.blockpm\
 \nUsage: Blocks the person.\
-\n\n.listapproved\
+\n\n.listapprovedpm\
 \nUsage: To list the all approved users.\
 "
 })
