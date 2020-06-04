@@ -7,7 +7,7 @@ Command: `.cpp`
 2) Ported By: @r4v4n4 (Legend)
 3) End Game Help By: @spechide
 NOTE: NO.4 IS A VIRUS WHICH HAD COME HERE ACCIDENTALLY
-4) Custom / Modified Plugin for some magical effects by this Legendary Guy @PhycoNinja13b 
+4) Custom / Modified Plugin for some magical effects by this Legendary Guy @Sur_vivor
 
 
 #curse: who ever edits this credit section will goto hell
