@@ -67,7 +67,7 @@ async def lyrics(lyric):
     return
 
 
-@borg.on(admin_cmd(outgoing=True, pattern=".bf"))
+@borg.on(admin_cmd(outgoing=True, pattern="bf"))
 async def pressf(f):
     """Pays respects"""
     args = f.text.split()
