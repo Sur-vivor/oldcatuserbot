@@ -1,4 +1,4 @@
-"""COMMAND : .join , .pay , .work , .push , .aag , .climb, .fuckoff, .ohh, .suckit, .lovestory"""
+"""COMMAND : .join , .pay , .work , .push , .aag , .climb, .ohh, .suckit, .lovestory"""
 import asyncio
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
@@ -103,24 +103,8 @@ async def _(event):
     else:
         await event.reply(mentions)
     await event.delete()
-
-@borg.on(admin_cmd("fuckoff"))
-async def _(event):
-    if event.fwd_from:
-        return
-    mentions = "`......................................../´¯/) \n......................................,/¯../ \n...................................../..../ \n..................................../´.¯/\n..................................../´¯/\n..................................,/¯../ \n................................../..../ \n................................./´¯./\n................................/´¯./\n..............................,/¯../ \n............................./..../ \n............................/´¯/\n........................../´¯./\n........................,/¯../ \n......................./..../ \n....................../´¯/\n....................,/¯../ \n.................../..../ \n............./´¯/'...'/´¯¯`·¸ \n........../'/.../..../......./¨¯\ \n........('(...´...´.... ¯~/'...') \n.........\.................'...../ \n..........''...\.......... _.·´ \n............\..............( \n..............\.............\...`"
-    chat = await event.get_input_chat()
-    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
-        mentions += f""
-    reply_message = None
-    if event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        await reply_message.reply(mentions)
-    else:
-        await event.reply(mentions)
-    await event.delete()
     
-@borg.on(admin_cmd("suckit"))
+@borg.on(admin_cmd(pattern="suckit"))
 async def _(event):
     if event.fwd_from:
         return
@@ -137,7 +121,7 @@ async def _(event):
     await event.delete() 
     
     
-@borg.on(admin_cmd("ohh"))
+@borg.on(admin_cmd(pattern="ohh"))
 async def _(event):
     if event.fwd_from:
         return
