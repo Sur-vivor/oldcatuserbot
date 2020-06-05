@@ -1,6 +1,6 @@
 import asyncio
 import io
-import userbot.plugins.sql_helpers.no_log_pms_sql as no_log_pms_sql
+import userbot.plugins.sql_helper.no_log_pms_sql as no_log_pms_sql
 from telethon import events, errors, functions, types
 from userbot.utils import admin_cmd
 from userbot.uniborgConfig import Config
