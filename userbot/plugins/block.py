@@ -5,7 +5,7 @@ import asyncio
 from collections import deque
 from userbot.utils import admin_cmd
 
-@borg.on(admin_cmd(pattern=r"block"))
+@borg.on(admin_cmd(pattern=r"blk"))
 async def _(event):
 	if event.fwd_from:
 		return
