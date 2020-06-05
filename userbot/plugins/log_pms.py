@@ -40,7 +40,8 @@ async def monito_p_m_s(event):
                 print(e)
 
                 
-@borg.on(admin_cmd(pattern=f"nolog", outgoing=True))
+@borg.on(admin_cmd(pattern=f"nolog", allow_sudo=True))
+@borg.on(events.NewMessage(pattern="nolog ?(.*)"))
 async def approve_p_m(event):
     if event.fwd_from:
         return
@@ -52,4 +53,4 @@ async def approve_p_m(event):
                 NO_PM_LOG_USERS.append(chat.id)
                 await event.edit("Won't Log Messages from this chat")
                 await asyncio.sleep(3)
-                await event.delete()                
+                await event.delete()
