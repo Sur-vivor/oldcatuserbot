@@ -215,7 +215,7 @@ CMD_HELP.update({
 \nUsage: dispproves the mentioned/replied person to PM.\
 \n\n.blockpm\
 \nUsage: Blocks the person.\
-\n\n.listapprovedpm\
+\n\n.listapprovedpms\
 \nUsage: To list the all approved users.\
 "
 })
