@@ -1,189 +1,102 @@
-import asyncio
-import io
-import userbot.plugins.sql_helper.no_log_pms_sql as no_log_pms_sql
-from telethon import events, errors, functions, types
+"""Log PMs
+Check https://t.me/tgbeta/3505"""
+from asyncio import sleep
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
+from telethon.tl.types import MessageEntityMentionName
+from telethon.utils import get_input_location
 from userbot.utils import admin_cmd
+from os import remove
+from telethon import events
+import asyncio
+from datetime import datetime
+import time
+from userbot.utils import register, errors_handler, admin_cmd
+import asyncio
+import logging
+import os
+import sys
+from telethon.tl import functions, types
+from telethon.tl.types import Channel, Chat, User
 from userbot.uniborgConfig import Config
 
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.WARN)
+
+NO_PM_LOG_USERS = []
+
+BOTLOG = True
+BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 
 
-@borg.on(admin_cmd(pattern="nccreatedch"))
-async def create_dump_channel(event):
-    if Config.PM_LOGGR_BOT_API_ID is None:
-        result = await borg(functions.channels.CreateChannelRequest(  # pylint:disable=E0602
-            title=f"UniBorg-{borg.uid}-PM_LOGGR_BOT_API_ID-data",
-            about="PM_LOGGR_BOT_API_ID // Do Not Touch",
-            megagroup=False
-        ))
-        logger.info(result)
-        created_chat_id = result.chats[0].id
-        result = await borg.edit_admin(  # pylint:disable=E0602
-            entity=created_chat_id,
-            user=Config.TG_BOT_USER_NAME_BF_HER,
-            is_admin=True,
-            title="Editor"
-        )
-        logger.info(result)
-        with io.BytesIO(str.encode(str(created_chat_id))) as out_file:
-            out_file.name = "PLEASE.IGNORE.dummy.file"
-            await borg.send_file(
-                created_chat_id,
-                out_file,
-                force_document=True,
-                allow_cache=False,
-                caption=f"Please set `PM_LOGGR_BOT_API_ID` to `{created_chat_id}`",
-                reply_to=1
-            )
-        await event.delete()
+@register(outgoing=True, pattern=r"^.save(?: |$)([\s\S]*)")
+async def log(log_text):
+    """ For .log command, forwards a message or the command argument to the bot logs group """
+    if BOTLOG:
+        if log_text.reply_to_msg_id:
+            reply_msg = await log_text.get_reply_message()
+            await reply_msg.forward_to(BOTLOG_CHATID)
+        elif log_text.pattern_match.group(1):
+            user = f"#LOG / Chat ID: {log_text.chat_id}\n\n"
+            textx = user + log_text.pattern_match.group(1)
+            await bot.send_message(BOTLOG_CHATID, textx)
+        else:
+            await log_text.edit("`What am I supposed to log?`")
+            return
+        await log_text.edit("`Logged Successfully`")
     else:
-        await event.edit(f"**is configured**. [please do not touch](https://t.me/c/{Config.PM_LOGGR_BOT_API_ID}/2)")
+        await log_text.edit("`This feature requires Logging to be enabled!`")
+    await sleep(2)
+    await log_text.delete()
 
 
+    
+@register(outgoing=True, pattern="^.kickme$")
+async def kickme(leave):
+    """ Basically it's .kickme command """
+    await leave.edit("Nope, no, no, I go away")
+    await leave.client.kick_participant(leave.chat_id, 'me')
+
+@borg.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+async def monito_p_m_s(event):
+    sender = await event.get_sender()
+    if Config.NO_LOG_P_M_S and not sender.bot:
+        chat = await event.get_chat()
+        if chat.id not in NO_PM_LOG_USERS and chat.id != borg.uid:
+            try:
+                e = await borg.get_entity(int(Config.PM_LOGGR_BOT_API_ID))
+                fwd_message = await borg.forward_messages(
+                    e,
+                    event.message,
+                    silent=True
+                )
+            except Exception as e:
+                # logger.warn(str(e))
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+                print(e) 
+
+@borg.on(admin_cmd(pattern="log ?(.*)"))
+async def set_no_log_p_m(event):
+    if Config.PM_LOGGR_BOT_API_ID is not None:
+        reason = event.pattern_match.group(1)
+        chat = await event.get_chat()
+        if event.is_private:
+            if chat.id in NO_PM_LOG_USERS:
+                NO_PM_LOG_USERS.remove(chat.id)
+                await event.edit("Will Log Messages from this chat")
+                await asyncio.sleep(3)
+                await event.delete()
+                
+                
 @borg.on(admin_cmd(pattern="nolog ?(.*)"))
 async def set_no_log_p_m(event):
     if Config.PM_LOGGR_BOT_API_ID is not None:
         reason = event.pattern_match.group(1)
         chat = await event.get_chat()
         if event.is_private:
-            if not no_log_pms_sql.is_approved(chat.id):
-                no_log_pms_sql.approve(chat.id)
+            if chat.id not in NO_PM_LOG_USERS:
+                NO_PM_LOG_USERS.append(chat.id)
                 await event.edit("Won't Log Messages from this chat")
                 await asyncio.sleep(3)
                 await event.delete()
-
-
-@borg.on(admin_cmd(pattern="dellog ?(.*)"))
-async def set_no_log_p_m(event):
-    if Config.PM_LOGGR_BOT_API_ID is not None:
-        reason = event.pattern_match.group(1)
-        chat = await event.get_chat()
-        if event.is_private:
-            if no_log_pms_sql.is_approved(chat.id):
-                no_log_pms_sql.disapprove(chat.id)
-                await event.edit("Will Log Messages from this chat")
-                await asyncio.sleep(3)
-                await event.delete()
-                
-                
-                
-@borg.on(events.NewMessage(incoming=True))
-async def on_new_private_message(event):
-    if Config.PM_LOGGR_BOT_API_ID is None:
-        return
-
-    if not event.is_private:
-        return
-
-    message_text = event.message.message
-    message_media = event.message.media
-    message_id = event.message.id
-    message_to_id = event.message.to_id
-    chat_id = event.chat_id
-    # logger.info(chat_id)
-
-    sender = await borg.get_entity(chat_id)
-    if chat_id == borg.uid:
-        # don't log Saved Messages
-        return
-    if sender.bot:
-        # don't log bots
-        return
-    if sender.verified:
-        # don't log verified accounts
-        return
-
-    if not no_log_pms_sql.is_approved(chat_id):
-        # log pms
-        await do_log_pm_action(chat_id, message_text, message_media)
-
-
-@borg.on(events.ChatAction(blacklist_chats=Config.UB_BLACK_LIST_CHAT))
-async def on_new_chat_action_message(event):
-    if Config.PM_LOGGR_BOT_API_ID is None:
-        return
-    # logger.info(event.stringify())
-    chat_id = event.chat_id
-    message_id = event.action_message.id
-
-    if event.created or event.user_added:
-        added_by_users = event.action_message.action.users
-        if borg.uid in added_by_users:
-            added_by_user = event.action_message.from_id
-            # someone added me to chat
-            the_message = ""
-            the_message += "#MessageActionChatAddUser\n\n"
-            the_message += f"[User](tg://user?id={added_by_user}): `{added_by_user}`\n"
-            the_message += f"[Private Link](https://t.me/c/{chat_id}/{message_id})\n"
-            await borg.send_message(
-                entity=Config.PM_LOGGR_BOT_API_ID,
-                message=the_message,
-                # reply_to=,
-                # parse_mode="html",
-                link_preview=False,
-                # file=message_media,
-                silent=True
-            )
-
-
-@borg.on(events.Raw())
-async def on_new_channel_message(event):
-    if Config.PM_LOGGR_BOT_API_ID is None:
-        return
-    if tgbot is None:
-        return
-    # logger.info(event.stringify())
-    if isinstance(event, types.UpdateChannel):
-        channel_id = event.channel_id
-        message_id = 2
-        # someone added me to channel
-        # TODO: https://t.me/TelethonChat/153947
-        the_message = ""
-        the_message += "#MessageActionChatAddUser\n\n"
-        # the_message += f"[User](tg://user?id={added_by_user}): `{added_by_user}`\n"
-        the_message += f"[Private Link](https://t.me/c/{channel_id}/{message_id})\n"
-        await borg.send_message(
-            entity=Config.PM_LOGGR_BOT_API_ID,
-            message=the_message,
-            # reply_to=,
-            # parse_mode="html",
-            link_preview=False,
-            # file=message_media,
-            silent=True
-        )
-
-
-"""@borg.on(events.Raw())
-async def _(event):
-    if Config.PM_LOGGR_BOT_API_ID is None:
-        return
-    if tgbot is None:
-        return
-    logger.info(event.stringify())"""
-
-
-"""if tgbot is not None:
-    @tgbot.on(events.Raw())
-    async def _(event):
-        if Config.PM_LOGGR_BOT_API_ID is None:
-            return
-        logger.info(event.stringify())"""
-
-
-async def do_log_pm_action(chat_id, message_text, message_media):
-    chat = await event.get_chat()    
-    the_message = ""
-    the_message += f"CHAT: {event.chat.title}(`{event.chat_id}`)"
-    the_message += "#LOG_PMs\n\n"
-    the_message += f"[User](tg://user?id={chat_id}): {chat_id}\n"
-    the_message += f"Message: {message_text}\n"
-    # the_message += f"Media: {message_media}"
-    await borg.send_message(
-        entity=Config.PM_LOGGR_BOT_API_ID,
-        message=the_message,
-        # reply_to=,
-        # parse_mode="html",
-        link_preview=False,
-        file=message_media,
-        silent=True
-    )
-                
