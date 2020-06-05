@@ -86,12 +86,12 @@ if Var.PRIVATE_GROUP_ID is not None:
                 await event.client(functions.contacts.BlockRequest(chat.id))
 
 
-    @command(pattern="^.listapprovedpm")
+    @command(pattern="^.listapprovedpms")
     async def approve_p_m(event):
         if event.fwd_from:
             return
         approved_users = pmpermit_sql.get_all_approved()
-        APPROVED_PMs = "Current Approved PMs\n"
+        APPROVED_PMs = "[───────────────▄▄───▐█\n───▄▄▄───▄██▄──█▀───█─▄\n─▄██▀█▌─██▄▄──▐█▀▄─▐█▀\n▐█▀▀▌───▄▀▌─▌─█─▌──▌─▌\n▌▀▄─▐──▀▄─▐▄─▐▄▐▄─▐▄─▐▄](t.me/Sur_vivor) \n\nApproved PMs....\n"
         if len(approved_users) > 0:
             for a_user in approved_users:
                 if a_user.reason:
@@ -99,7 +99,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                 else:
                     APPROVED_PMs += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id})\n"
         else:
-            APPROVED_PMs = "no Approved PMs (yet)"
+            APPROVED_PMs = "No Approved PMs (yet)"
         if len(APPROVED_PMs) > 4095:
             with io.BytesIO(str.encode(APPROVED_PMs)) as out_file:
                 out_file.name = "approved.pms.text"
