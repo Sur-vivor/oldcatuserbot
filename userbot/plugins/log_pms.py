@@ -170,11 +170,9 @@ async def _(event):
 
 
 async def do_log_pm_action(chat_id, message_text, message_media):
-    replied_user = await get_user(event)
-    first_name = html.escape(replied_user.user.first_name)
-    if first_name is not None:
-        first_name = first_name.replace("\u2060", "")
-    the_message = "From <a href='tg://user?id={}'>{}</a>".format(chat_id, first_name)
+    chat = await event.get_chat()    
+    the_message = ""
+    the_message += f"CHAT: {event.chat.title}(`{event.chat_id}`)"
     the_message += "#LOG_PMs\n\n"
     the_message += f"[User](tg://user?id={chat_id}): {chat_id}\n"
     the_message += f"Message: {message_text}\n"
