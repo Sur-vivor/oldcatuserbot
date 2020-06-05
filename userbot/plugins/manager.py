@@ -1,6 +1,3 @@
-"""Notification Manager for @UniBorg
-"""
-
 import asyncio
 import io
 import userbot.plugins.sql_helper.no_log_pms_sql as no_log_pms_sql
@@ -23,8 +20,8 @@ UNIBORG_USER_BOT_NO_WARN = "Hi! I will answer to your message soon. Please wait 
 async def create_dump_channel(event):
     if Config.PM_LOGGR_BOT_API_ID is None:
         result = await event.client(functions.channels.CreateChannelRequest(  # pylint:disable=E0602
-            title=f"UniBorg-{borg.uid}-PM_LOGGR_BOT_API_ID-data",
-            about="@UniBorg PM_LOGGR_BOT_API_ID // Do Not Touch",
+            title=f"catuserbot-{borg.uid}-PM_LOGGR_BOT_API_ID-data",
+            about=" PM_LOGGR_BOT_API_ID // Do Not Touch",
             megagroup=False
         ))
         logger.info(result)
@@ -77,7 +74,7 @@ async def set_no_log_p_m(event):
                 await event.delete()
 
 
-@borg.on(admin_cmd(pattern="approvepm ?(.*)"))
+@borg.on(admin_cmd(pattern="approve ?(.*)"))
 async def approve_p_m(event):
     if event.fwd_from:
         return
@@ -97,7 +94,7 @@ async def approve_p_m(event):
                 await event.delete()
 
 
-@borg.on(admin_cmd(pattern="blockpm ?(.*)"))
+@borg.on(admin_cmd(pattern="block ?(.*)"))
 async def approve_p_m(event):
     if event.fwd_from:
         return
@@ -112,7 +109,7 @@ async def approve_p_m(event):
                 await event.client(functions.contacts.BlockRequest(chat.id))
 
 
-@borg.on(admin_cmd(pattern="list approved pms"))
+@borg.on(admin_cmd(pattern="listapproved"))
 async def approve_p_m(event):
     if event.fwd_from:
         return
