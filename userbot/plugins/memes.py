@@ -565,7 +565,6 @@ THROW = [
 HIT = [
     "hits",
     "whacks",
-    "fek ke maari",
     "slaps",
     "smacks",
     "bashes",
