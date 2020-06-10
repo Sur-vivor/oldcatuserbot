@@ -9,9 +9,9 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.info(?: |$)(.*)")
+@register(outgoing=True, pattern="^.pinfo(?: |$)(.*)")
 async def info(event):
-    """ For .info command,"""
+    """ For .pinfo command,"""
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
@@ -20,7 +20,7 @@ async def info(event):
             await event.edit("Please specify a valid plugin name.")
     else:
         await event.edit("Please specify which plugin do you want help for !!\
-            \nUsage: .info <plugin name>")
+            \nUsage: .pinfo <plugin name>")
         string = ""
         for i in CMD_HELP:
             string += "`" + str(i)
