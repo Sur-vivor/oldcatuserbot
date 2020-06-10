@@ -3,7 +3,7 @@ import io
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon import events, errors, functions, types
-from userbot import ALIVE_NAME, LESS_SPAMMY
+from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
 from userbot import CMD_HELP
 
@@ -12,17 +12,17 @@ PREV_REPLY_MESSAGE = {}
 CACHE = {}
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**No name set yet nibba, check pinned message in** @XtraTgBot"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**Set ALIVE_NAME in config vars in Herok**"
 USER_BOT_WARN_ZERO = "`You were spamming my peru master's inbox, henceforth your retarded lame ass has been blocked by my master's userbot.` **Now GTFO, i'm playing minecraft** "
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](t.me/Sur_vivor)\n\n"
-                    "`Hello, this is ✰Sᴀͥʀᴀͣᴛͫʜ™✰ Security Service.You have found your way here to my master,`"
+                    "`Hello, this is @Sur_vivor Security Service.You have found your way here to my master,`"
                     f"{DEFAULTUSER}'s` inbox.\n\n"
                     "Leave your name,reason and 10k$ and hopefully you'll get a reply within 2 light years.`\n\n"
                     "** Send** `/start` ** so that we can decide why you're here.**")
 
 
 if Var.PRIVATE_GROUP_ID is not None:
-    @command(pattern="^.approvepm ?(.*)")
+    @command(pattern="^.approve ?(.*)")
     async def approve_p_m(event):
         if event.fwd_from:
            return
@@ -57,8 +57,8 @@ if Var.PRIVATE_GROUP_ID is not None:
                     await asyncio.sleep(3)
                     await rko.delete()
 
-    @command(pattern="^.disapprovepm ?(.*)")
-    async def disapprove_p_m(event):
+    @command(pattern="^.disapprove ?(.*)")
+    async def approve_p_m(event):
         if event.fwd_from:
             return
         replied_user = await event.client(GetFullUserRequest(event.chat_id))
@@ -66,12 +66,15 @@ if Var.PRIVATE_GROUP_ID is not None:
         reason = event.pattern_match.group(1)
         chat = await event.get_chat()
         if event.is_private:
+          if chat.id == 1118936839:
+            await event.edit("Sorry, I Can't Disapprove My Master")
+          else:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
-                await event.edit("disapproved to pm [{}](tg://user?id={})".format(firstname, chat.id))           
+                await event.edit("Disapproved [{}](tg://user?id={})".format(firstname, chat.id))           
                 
-    @command(pattern="^.blockpm ?(.*)")
-    async def block_p_m(event):
+    @command(pattern="^.block ?(.*)")
+    async def approve_p_m(event):
         if event.fwd_from:
             return
         replied_user = await event.client(GetFullUserRequest(event.chat_id))
@@ -79,19 +82,23 @@ if Var.PRIVATE_GROUP_ID is not None:
         reason = event.pattern_match.group(1)
         chat = await event.get_chat()
         if event.is_private:
+          if chat.id == 1118936839:
+            await event.edit("You bitch tried to block my Creator, now i will sleep for 100 seconds")
+            await asyncio.sleep(100)
+          else:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
-                await event.edit(" ███████▄▄███████████▄  \n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓███░░░░░░░░░░░░█\n██████▀▀▀█░░░░██████▀  \n░░░░░░░░░█░░░░█  \n░░░░░░░░░░█░░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░░▀▀ \n\nFuck Off Bitch, Now You Can't Message Me..[{}](tg://user?id={})".format(firstname, chat.id))
+                await event.edit(" ███████▄▄███████████▄  \n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓███░░░░░░░░░░░░█\n██████▀▀▀█░░░░██████▀  \n░░░░░░░░░█░░░░█  \n░░░░░░░░░░█░░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░░▀▀ \n\n**Fuck Off Bitch, Now You Can't Message Me..**[{}](tg://user?id={})".format(firstname, chat.id))
                 await asyncio.sleep(3)
-                await event.client(functions.contacts.BlockRequest(chat.id))
+                await event.client(functions.contacts.BlockRequest(chat.id)
 
 
-    @command(pattern="^.listapprovedpms")
+    @command(pattern="^.listapproved")
     async def approve_p_m(event):
         if event.fwd_from:
             return
         approved_users = pmpermit_sql.get_all_approved()
-        APPROVED_PMs = "[───────────────▄▄───▐█\n───▄▄▄───▄██▄──█▀───█─▄\n─▄██▀█▌─██▄▄──▐█▀▄─▐█▀\n▐█▀▀▌───▄▀▌─▌─█─▌──▌─▌\n▌▀▄─▐──▀▄─▐▄─▐▄▐▄─▐▄─▐▄](t.me/Sur_vivor) \n\nApproved PMs....\n"
+        APPROVED_PMs = "[───────────────▄▄───▐█\n───▄▄▄───▄██▄──█▀───█─▄\n─▄██▀█▌─██▄▄──▐█▀▄─▐█▀\n▐█▀▀▌───▄▀▌─▌─█─▌──▌─▌\n▌▀▄─▐──▀▄─▐▄─▐▄▐▄─▐▄─▐▄](t.me/Sur_vivor) \n\nCurrently Approved PMs....\n"
         if len(approved_users) > 0:
             for a_user in approved_users:
                 if a_user.reason:
@@ -209,17 +216,19 @@ async def hehehe(event):
         if not pmpermit_sql.is_approved(chat.id):
             pmpermit_sql.approve(chat.id, "**My Boss Is Best🔥**")
             await borg.send_message(chat, "**Boss Meet My Creator**")
+             
+
             
 CMD_HELP.update({
     "pmpermit":
     "\
-.approvepm\
+.approve\
 \nUsage: Approves the mentioned/replied person to PM.\
-.disapprovepm\
+.disapprove\
 \nUsage: dispproves the mentioned/replied person to PM.\
-\n\n.blockpm\
+\n\n.block\
 \nUsage: Blocks the person.\
-\n\n.listapprovedpms\
+\n\n.listapproved\
 \nUsage: To list the all approved users.\
 "
 })
