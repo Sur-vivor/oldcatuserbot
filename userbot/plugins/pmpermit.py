@@ -10,10 +10,9 @@ from userbot import CMD_HELP
 
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
-CACHE = {}
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**Set ALIVE_NAME in config vars in Herok**"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**Set ALIVE_NAME in config vars in Heroku**"
 USER_BOT_WARN_ZERO = "`You were spamming my peru master's inbox, henceforth your retarded lame ass has been blocked by my master's userbot.` **Now GTFO, i'm playing minecraft** "
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](t.me/Sur_vivor)\n\n"
                     "`Hello, this is @Sur_vivor Security Service.You have found your way here to my master,`"
@@ -39,7 +38,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                     await PREV_REPLY_MESSAGE[chat.id].delete()
                     del PREV_REPLY_MESSAGE[chat.id]
                 pmpermit_sql.approve(chat.id, reason)
-                await event.edit("[──███▅▄▄▄▄▄▄▄▄▄\n─██▐████████████\n▐█▀████████████▌▌\n▐─▀▀▀▐█▌▀▀███▀█─▌\n▐▄───▄█───▄█▌▄█](t.me/Sur_vivor)\nApproved to pm [{}](tg://user?id={})".format(firstname, chat.id))
+                await event.edit("[──███▅▄▄▄▄▄▄▄▄▄\n─██▐████████████\n▐█▀████████████▌▌\n▐─▀▀▀▐█▌▀▀███▀█─▌\n▐▄───▄█───▄█▌▄█](t.me/Sur_vivor)\nMy Master Has Approved You To PM Him... [{}](tg://user?id={})".format(firstname, chat.id))
                 await asyncio.sleep(3)
                 await event.delete()
 
