@@ -601,7 +601,7 @@ async def kek(keks):
             time.sleep(0.3)
             await keks.edit(":" + uio[i % 2])
 
-@borg.on(admin_cmd(pattern="slap ?(.*)"))
+@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
     if event.fwd_from:
         return
