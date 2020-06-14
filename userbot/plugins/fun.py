@@ -13,7 +13,7 @@ from telethon.tl.types import MessageEntityMentionName
 
 
 from userbot import CMD_HELP
-from userbot.utils import register, admin_cmd
+from userbot.utils import register
 
 
 # ================= CONSTANT =================
@@ -38,7 +38,7 @@ GAMBAR_TITIT = """
 
 # ===========================================
 
-@borg.on(admin_cmd(outgoing=True, pattern="^.(yes|no|maybe|decide)$"))
+@register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
 async def decide(event):
     decision = event.pattern_match.group(1).lower()
     message_id = event.reply_to_msg_id if event.reply_to_msg_id else None
@@ -54,17 +54,17 @@ async def decide(event):
 
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="^.fp$"))
+@register(outgoing=True, pattern="^.fp$")
 async def facepalm(e):
     """ Facepalm  🤦‍♂ """
     await e.edit("🤦‍♂")
 
-@borg.on(admin_cmd(outgoing=True, pattern="^.corona$"))
+@register(outgoing=True, pattern="^.corona$")
 async def iqless(e):
     await e.edit("Antivirus scan was completed \n⚠️ Warning! This  donkey has Corona Virus")
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="^.ggl (.*)"))
+@register(outgoing=True, pattern="^.ggl (.*)")
 async def let_me_google_that_for_you(lmgtfy_q):
     textx = await lmgtfy_q.get_reply_message()
     qry = lmgtfy_q.pattern_match.group(1)
@@ -81,7 +81,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
     \n[{query}]({r.json()['shorturl']})")
 
 
-@borg.on(admin_cmd(pattern=r".scam(?: |$)(.*)", outgoing=True))
+@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
     """ Just a small command to fake chat actions for fun !! """
     options = [
