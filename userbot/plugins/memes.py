@@ -22,7 +22,7 @@ from telethon.tl.types import MessageEntityMentionName
 from cowpy import cow
 
 from userbot import CMD_HELP
-from userbot.utils import register, admin_cmd
+from userbot.utils import register
 from userbot import ALIVE_NAME
 
 # ================= CONSTANT =================
@@ -601,7 +601,7 @@ async def kek(keks):
             time.sleep(0.3)
             await keks.edit(":" + uio[i % 2])
 
-@borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
+@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
     if event.fwd_from:
         return
