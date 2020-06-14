@@ -1,6 +1,6 @@
 """
 Time In Profile Pic.....
-Command: `.epp`
+Command: `.alanpfp`
 
 ⚠️DISCLAIMER⚠️
 
