@@ -2,12 +2,7 @@
 Time In Profile Pic.....
 Command: `.epp`
 
-:::::Credit Time::::::
-1) Coded By: @s_n_a_p_s
-2) Ported By: @r4v4n4 (Legend)
-3) End Game Help By: @spechide
-NOTE: NO.4 IS A VIRUS WHICH HAD COME HERE ACCIDENTALLY
-4) Custom / Modified Plugin for some magical effects by this Legendary Guy @Sur_vivor 
+Custom / Modified Plugin for some magical effects by this Legendary Guy @Sur_vivor 
 
 
 #curse: who ever edits this credit section will goto hell
@@ -37,7 +32,7 @@ async def autopic(event):
     while True:
         piclink = random.randint(0, len(TELEGRAPH_MEDIA_LINKS) - 1)
         AUTOPP = TELEGRAPH_MEDIA_LINKS[piclink]
-        downloaded_file_name = "./ravana/original_pic.png"
+        downloaded_file_name = "./userbot/original_pic.png"
         downloader = SmartDL(AUTOPP, downloaded_file_name, progress_bar=True)
         downloader.start(blocking=False)
         photo = "photo_pfp.png"
