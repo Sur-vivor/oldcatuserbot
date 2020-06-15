@@ -1,6 +1,6 @@
 """
 Time In Profile Pic.....
-Command: `.alanpfp`
+Command: `.alandp`
 
 ⚠️DISCLAIMER⚠️
 
@@ -22,7 +22,7 @@ FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 #Add telegraph media links of profile pics that are to be used
 TELEGRAPH_MEDIA_LINKS = ["https://telegra.ph/file/b2cea1712ebaca603e6f4.jpg",
                         ]
-@borg.on(admin_cmd(pattern="alanpfp ?(.*)"))
+@borg.on(admin_cmd(pattern="alandp ?(.*)"))
 async def autopic(event):
     while True:
         piclink = random.randint(0, len(TELEGRAPH_MEDIA_LINKS) - 1)
