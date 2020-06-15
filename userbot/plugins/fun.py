@@ -13,7 +13,7 @@ from telethon.tl.types import MessageEntityMentionName
 
 
 from userbot import CMD_HELP
-from userbot.utils import register
+from userbot.utils import register, admin_cmd
 
 
 # ================= CONSTANT =================
@@ -38,7 +38,8 @@ GAMBAR_TITIT = """
 
 # ===========================================
 
-@register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
+#@register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
+@borg.on(admin_cmd(pattern=r"(yes|no|maybe|decide)$"))
 async def decide(event):
     decision = event.pattern_match.group(1).lower()
     message_id = event.reply_to_msg_id if event.reply_to_msg_id else None
