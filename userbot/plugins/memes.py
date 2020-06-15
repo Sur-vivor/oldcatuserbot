@@ -23,7 +23,7 @@ from telethon.tl.types import MessageEntityMentionName
 from cowpy import cow
 
 from userbot import CMD_HELP
-from userbot.utils import register
+from userbot.utils import register, admin_cmd
 from userbot import ALIVE_NAME
 
 # ================= CONSTANT =================
@@ -603,7 +603,7 @@ async def kek(keks):
             await keks.edit(":" + uio[i % 2])
 			  
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Sur_vivor"
-@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
+@borg.on(admin_cmd(pattern=r"slap(?: |$)(.*)", outgoing=True))
 async def who(event):
     if event.fwd_from:
         return
