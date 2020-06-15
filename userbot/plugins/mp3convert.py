@@ -1,5 +1,5 @@
 """File Converter
-.nfc """
+.convert mp3 """
 
 import asyncio
 import os
@@ -41,7 +41,7 @@ async def _(event):
         voice_note = False
         supports_streaming = False
         if input_str == "voice":
-            new_required_file_caption = "NLFC_" + str(round(time.time())) + ".opus"
+            new_required_file_caption = "AUDIO_" + str(round(time.time())) + ".opus"
             new_required_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
             command_to_run = [
                 "ffmpeg",
