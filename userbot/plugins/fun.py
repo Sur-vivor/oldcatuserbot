@@ -55,17 +55,17 @@ async def decide(event):
 
 
 
-@register(outgoing=True, pattern="^.fp$")
+@borg.on(admin_cmd(pattern=r"fp$")
 async def facepalm(e):
     """ Facepalm  🤦‍♂ """
     await e.edit("🤦‍♂")
 
-@register(outgoing=True, pattern="^.corona$")
+@borg.on(admin_cmd(pattern=r"corona$")
 async def iqless(e):
     await e.edit("Antivirus scan was completed \n⚠️ Warning! This  donkey has Corona Virus")
 
 
-@register(outgoing=True, pattern="^.ggl (.*)")
+@borg.on(admin_cmd(pattern=r"ggl (.*)")
 async def let_me_google_that_for_you(lmgtfy_q):
     textx = await lmgtfy_q.get_reply_message()
     qry = lmgtfy_q.pattern_match.group(1)
@@ -82,7 +82,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
     \n[{query}]({r.json()['shorturl']})")
 
 
-@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
+@borg.on(admin_cmd(pattern=r"scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
     """ Just a small command to fake chat actions for fun !! """
     options = [
