@@ -2,12 +2,7 @@
 Time In Profile Pic.....
 Command: `.bloom`
 Hmmmm U need to config DOWNLOAD_PFP_URL_CLOCK var in Heroku with any telegraph image link
-:::::Credit Time::::::
-1) Coded By: @s_n_a_p_s
-2) Ported By: @r4v4n4 (Noodz Lober)
-3) End Game Help By: @spechide
-4) Better Colour Profile Pic By @PhycoNinja13b
-#curse: who ever edits this credit section will goto hell
+
 ⚠️DISCLAIMER⚠️
 USING THIS PLUGIN CAN RESULT IN ACCOUNT BAN. WE DONT CARE ABOUT BAN, SO WE ARR USING THIS.
 """
@@ -52,7 +47,7 @@ async def autopic(event):
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
         ofnt = ImageFont.truetype(FONT_FILE_TO_USE, 250)
         drawn_text.text((350, 350), current_time, font=fnt, fill=(FR,FG,FB))
-        drawn_text.text((350, 350), "      😈", font = ofnt, fill=(FR,FG,FB))
+        drawn_text.text((350, 350), "  😎", font = ofnt, fill=(FR,FG,FB))
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
@@ -60,6 +55,6 @@ async def autopic(event):
                 file
             ))
             os.remove(photo)
-            await asyncio.sleep(30)
+            await asyncio.sleep(60)
         except:
             return
