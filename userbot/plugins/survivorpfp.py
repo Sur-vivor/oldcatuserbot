@@ -1,13 +1,8 @@
 """
 Time In Profile Pic.....
-Command: `.cpp`
+Command: `.survivorpfp`
 
-:::::Credit Time::::::
-1) Coded By: @s_n_a_p_s
-2) Ported By: @r4v4n4 (Legend)
-3) End Game Help By: @spechide
-NOTE: NO.4 IS A VIRUS WHICH HAD COME HERE ACCIDENTALLY
-4) Custom / Modified Plugin for some magical effects by this Legendary Guy @Sur_vivor
+Custom / Modified Plugin for some magical effects by this Legendary Guy @Sur_vivor
 
 
 #curse: who ever edits this credit section will goto hell
@@ -45,7 +40,7 @@ TELEGRAPH_MEDIA_LINKS = ["https://telegra.ph/file/2eab4f64ead6fbf41bf87.jpg",
                          "https://telegra.ph/file/a196b6c07f0a659daf058.jpg",
                          "https://telegra.ph/file/69f19acd13b1eaf3fc120.jpg"
                         ]
-@borg.on(admin_cmd(pattern="cpp ?(.*)"))
+@borg.on(admin_cmd(pattern="survivorpfp ?(.*)"))
 async def autopic(event):
     while True:
         piclink = random.randint(0, len(TELEGRAPH_MEDIA_LINKS) - 1)
