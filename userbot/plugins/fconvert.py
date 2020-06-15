@@ -8,7 +8,7 @@ from datetime import datetime
 from userbot.utils import admin_cmd, progress
 
 
-@borg.on(admin_cmd(pattern="nfc (.*)"))  # pylint:disable=E0602
+@borg.on(admin_cmd(pattern="convert (.*)"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -60,7 +60,7 @@ async def _(event):
             voice_note = True
             supports_streaming = True
         elif input_str == "mp3":
-            new_required_file_caption = "NLFC_" + str(round(time.time())) + ".mp3"
+            new_required_file_caption = "AUDIO_" + str(round(time.time())) + ".mp3"
             new_required_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
             command_to_run = [
                 "ffmpeg",
