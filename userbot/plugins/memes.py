@@ -618,9 +618,7 @@ async def who(event):
     except:
         await event.edit("`Can't slap this nibba !!`")
 
-
 async def get_user(event):
-    """ Get the user from argument or replied message. """
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         replied_user = await event.client(GetFullUserRequest(previous_message.from_id))
@@ -646,18 +644,16 @@ async def get_user(event):
             replied_user = await event.client(GetFullUserRequest(user_object.id))
 
         except (TypeError, ValueError):
-            await event.edit("`I don't slap aliens, they ugly AF !!`")
+            await event.edit("`I don't slap strangers !!`")
             return None
 
     return replied_user
 			  
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Sur_vivor"
 async def slap(replied_user, event):
-    """ Construct a funny slap sentence !! """
     user_id = replied_user.user.id
     first_name = replied_user.user.first_name
     username = replied_user.user.username
-
     if username:
         slapped = "@{}".format(username)
     else:
