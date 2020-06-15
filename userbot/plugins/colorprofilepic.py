@@ -30,7 +30,7 @@ DEFAULTUSER = str(ALIVE_NAME)
 
 
 
-@borg.on(admin_cmd(pattern="cpp ?(.*)"))
+@borg.on(admin_cmd(pattern="clpp ?(.*)"))
 
 async def autopic(event): 
 
