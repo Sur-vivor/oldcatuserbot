@@ -24,7 +24,6 @@ from cowpy import cow
 
 from userbot import CMD_HELP
 from userbot.utils import register
-from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME
 
 # ================= CONSTANT =================
@@ -604,7 +603,7 @@ async def kek(keks):
             await keks.edit(":" + uio[i % 2])
 			  
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Sur_vivor"
-@borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
+@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
     if event.fwd_from:
         return
