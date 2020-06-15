@@ -7,6 +7,7 @@
 
 """ Userbot module for having some fun with people. """
 
+import sys
 import asyncio
 import random
 import re
@@ -15,14 +16,15 @@ import time
 from collections import deque
 
 import requests
-
+from telethon import events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 
 from cowpy import cow
 
 from userbot import CMD_HELP
-from userbot.utils import register,admin_cmd
+from userbot.utils import register
+from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME
 
 # ================= CONSTANT =================
@@ -600,7 +602,8 @@ async def kek(keks):
         for i in range(1, 15):
             time.sleep(0.3)
             await keks.edit(":" + uio[i % 2])
-
+			  
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Sur_vivor"
 @borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
 async def who(event):
     if event.fwd_from:
@@ -649,7 +652,6 @@ async def get_user(event):
 
     return replied_user
 			  
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Sur_vivor"
 async def slap(replied_user, event):
     user_id = replied_user.user.id
     first_name = replied_user.user.first_name
