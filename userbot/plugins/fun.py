@@ -157,7 +157,7 @@ async def nih(e):
                      "`\n🌹<\ *`")
 
 
-@register(outgoing=True, pattern="^.hello$")  
+@register(outgoing=True, pattern="^.hoi$")  
 async def gtfo(e):
    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`\n█████████`" 
