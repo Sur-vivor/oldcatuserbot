@@ -1,6 +1,6 @@
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
-from uniborg.utils import admin_cmd
+from userbot.utils import admin_cmd
 from userbot.uniborgConfig import Config
 
 BOTLOG = True
