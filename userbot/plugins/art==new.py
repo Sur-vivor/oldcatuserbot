@@ -64,17 +64,17 @@ H = ("╔┓┏╦━╦┓╔┓╔━━╗\n"
 async def bluedevilmonster(monster):
     await monster.edit(M)
 @borg.on(admin_cmd(pattern=r"pig"))
-async def bluedevipig(pig):
+async def bluedevilpig(pig):
     await pig.edit(P)
 @borg.on(admin_cmd(pattern=r"kiler"))
-async def bluedevikiller(kiler):
+async def bluedevilkiller(kiler):
     await kiler.edit(K)
 @borg.on(admin_cmd(pattern=r"gun"))
-async def bluedevigun(gun):
+async def bluedevilgun(gun):
     await gun.edit(G)
 @borg.on(admin_cmd(pattern=r"dog"))
-async def bluedevidog(dog):
+async def bluedevildog(dog):
     await dog.edit(D)    
-@borg.on(admin_cmd(pattern=r"hoi"))
-async def bluedevilhoi(hoi):
-    await hoi.edit(H)
+@borg.on(admin_cmd(pattern=r"hello"))
+async def bluedevilhello(hello):
+    await hello.edit(H)
