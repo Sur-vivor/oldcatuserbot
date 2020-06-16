@@ -4,7 +4,7 @@ from userbot.utils import admin_cmd
 from userbot.uniborgConfig import Config
 
 BOTLOG = True
-BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
+BOTLOG_CHATID = Config.PRIVATE_CHANNEL_BOT_API_ID
 
 @borg.on(admin_cmd(pattern="mute ?(\d+)?", allow_sudo=True))
 async def startmute(event):
