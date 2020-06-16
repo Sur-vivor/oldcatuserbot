@@ -5,17 +5,20 @@ from telethon.tl.types import ChannelParticipantsAdmins
 from platform import uname
 from userbot import ALIVE_NAME, CMD_HELP
 from userbot.utils import admin_cmd
+from telethon import version
+from platform import python_version, uname
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
+
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Sur_vivor"
 
 @command(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     await alive.edit("**MY BOT IS RUNNING SUCCESFULLY**\n\n"
-                     "`☞Telethon version: 1.11.3\n`"
-                     "`☞Python: 3.8.2\n`"
+                     f"`☞Telethon version: {version.__version__}\n`"
+                     f"`☞Python: {python_version()}\n`"
                      "`☞Bot was modified by:` @Sur_vivor\n"
-                     "`☞and created by :` snapdragon,anubis\n"
+                     "`☞Created by :` snapdragon,anubis,sandeep\n"
                      "`☞Database Status: Databases functioning normally!\n\n`"
                      "`☞Always with you, my master!\n`"
                      f"`☞Owner Name`: [{DEFAULTUSER}](t.me/Sur_vivor)\n"
