@@ -1,5 +1,4 @@
 from userbot import CMD_HELP 
-
 from userbot.uniborgConfig import Config
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
@@ -9,7 +8,6 @@ from userbot.utils import admin_cmd
 BOTLOG = True
 BOTLOG_CHATID = Config.PRIVATE_CHANNEL_BOT_API_ID
 
-#@command(outgoing=True, pattern=r"^.gmute ?(\d+)?")
 @borg.on(admin_cmd(pattern=r"gmute ?(\d+)?"))
 async def startgmute(event):
     private = False
@@ -47,7 +45,6 @@ async def startgmute(event):
                     f"USER: [{replied_user.user.first_name}](tg://user?id={userid})\n"
                     f"CHAT: {event.chat.title}(`{event.chat_id}`)")    
 
-#@command(outgoing=True, pattern=r"^.ungmute ?(\d+)?")
 @borg.on(admin_cmd(pattern=r"ungmute ?(\d+)?"))
 async def endgmute(event):
     private = False
