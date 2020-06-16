@@ -21,7 +21,7 @@ async def _(event):
 		return
 	deq = deque(list("🍦🍧🍩🍪🎂🍰🧁🍫🍬🍭"))
 	for _ in range(999):
-		await asyncio.sleep(1)
+		await asyncio.sleep(0.4)
 		await event.edit("".join(deq))
 		deq.rotate(1)
     
@@ -31,7 +31,7 @@ async def _(event):
 		return
 	deq = deque(list("😁☹️😁☹️😁☹️😁"))
 	for _ in range(999):
-		await asyncio.sleep(1)
+		await asyncio.sleep(0.4)
 		await event.edit("".join(deq))
 		deq.rotate(1)
 		
@@ -41,6 +41,6 @@ async def _(event):
 		return
 	deq = deque(list("🤔🧐🤨🤔🧐🤨"))
 	for _ in range(999):
-		await asyncio.sleep(1)
+		await asyncio.sleep(0.4)
 		await event.edit("".join(deq))
 		deq.rotate(1)		
