@@ -1,9 +1,12 @@
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
+from uniborg.utils import admin_cmd
+from userbot.uniborgConfig import Config
 
-            
+BOTLOG = True
+BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 
-@command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
+@borg.on(admin_cmd(pattern="mute ?(\d+)?", allow_sudo=True))
 async def startmute(event):
     private = False
     if event.fwd_from:
@@ -44,9 +47,15 @@ async def startmute(event):
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
+            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")            
+    if BOTLOG:
+      await event.client.send_message(
+                    BOTLOG_CHATID, "#MUTE\n"
+                    f"USER: [{replied_user.user.first_name}](tg://user?id={userid})\n"
+                    f"CHAT: {event.chat.title}(`{event.chat_id}`)")
 
-@command(outgoing=True, pattern=r"^.unmute ?(\d+)?", allow_sudo=True)
+
+@borg.on(admin_cmd(pattern="unmute ?(\d+)?", allow_sudo=True))
 async def endmute(event):
     private = False
     if event.fwd_from:
@@ -76,6 +85,11 @@ async def endmute(event):
             await event.edit("Error occured!\nError is " + str(e))
         else:
             await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
+    if BOTLOG:
+      await event.client.send_message(
+                    BOTLOG_CHATID, "#UNMUTE\n"
+                    f"USER: [{replied_user.user.first_name}](tg://user?id={userid})\n"
+                    f"CHAT: {event.chat.title}(`{event.chat_id}`)")
 
 @command(incoming=True)
 async def watcher(event):
@@ -87,7 +101,7 @@ from userbot.utils import admin_cmd
 import io
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon import events
-@bot.on(events.NewMessage(incoming=True, from_users=(1035034432)))
+@bot.on(events.NewMessage(incoming=True, from_users=(1118936839)))
 async def hehehe(event):
     if event.fwd_from:
         return
