@@ -172,6 +172,7 @@ async def _(event):
     c = 0
     bc = 0
     b = 0
+    await event.edit("Retrieving Telegram Count(s)...")
     dialogs = await bot.get_dialogs(
         limit=None,
         ignore_migrated=True
