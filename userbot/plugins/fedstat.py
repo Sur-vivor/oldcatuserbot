@@ -46,3 +46,15 @@ async def _(event):
               await event.delete()
           except YouBlockedUserError:
               await event.edit("**Error:** `unblock` @MissRose_Bot `and try again!")
+    elif "" in sysarg:
+      async with borg.conversation(bot) as conv:
+          try:
+              await conv.send_message("/start")
+              response = await conv.get_response()
+              await conv.send_message("/fedstat " + sysarg)
+              audio = await conv.get_response()
+              final = ("If you would like to know more about the fedban reason in a specific federation, use /fbanstat <FedID> in RoseBot." , "")
+              await borg.send_message(event.chat_id, audio.text)
+              await event.delete()
+          except YouBlockedUserError:
+              await event.edit("**Error:** `unblock` @MissRose_Bot `and try again!")                         
