@@ -47,7 +47,7 @@ async def _(event):
           except YouBlockedUserError:
               await event.edit("**Error:** `unblock` @MissRose_Bot `and try again!")
     
-    elif event.reply_to_msg_id:
+    if event.reply_to_msg_id:
             r_msg = await event.get_reply_message()
             if sysarg == r_msg.user_id:
                 async with borg.conversation(bot) as conv:
