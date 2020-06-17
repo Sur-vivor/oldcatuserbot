@@ -60,6 +60,24 @@ H = ("╔┓┏╦━╦┓╔┓╔━━╗\n"
 "║┗┛║┗╣┃║┃║X X║\n"
 "║┏┓║┏╣┗╣┗╣╰╯║\n"
 "╚┛┗╩━╩━╩━╩━━╝\n")
+E = ("▬▬▬.◙.▬▬▬ \n"
+"═▂▄▄▓▄▄▂ \n"
+"◢◤ █▀▀████▄▄▄▄◢◤ \n"
+"█▄ █ █▄ ███▀▀▀▀▀▀▀╬ \n"
+"◥█████◤ \n"
+"══╩══╩══ \n"
+"╬═╬ \n"
+"╬═╬ \n"
+"╬═╬ \n"
+"╬═╬ \n"
+"╬═╬ \n"
+"╬═╬ \n"
+"╬═╬ Hello, My Friend :D \n"
+"╬═╬☻/ \n"
+"╬═╬/▌ \n"
+"╬═╬/ \\n")
+
+
 @borg.on(admin_cmd(pattern=r"monster"))
 async def bluedevilmonster(monster):
     await monster.edit(M)
@@ -78,3 +96,6 @@ async def bluedevildog(dog):
 @borg.on(admin_cmd(pattern=r"hello"))
 async def bluedevilhello(hello):
     await hello.edit(H)
+@borg.on(admin_cmd(pattern=r"hmf"))
+async def bluedevilhmf(hmf):
+    await hmf.edit(E)
