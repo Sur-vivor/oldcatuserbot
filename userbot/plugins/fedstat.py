@@ -20,11 +20,9 @@ bot = "@MissRose_bot"
 @borg.on(admin_cmd("fstat ?(.*)"))
 async def _(event):
     if event.fwd_from:
-        return
-    if event.reply_to_msg_id:
-        chat = await event.get_reply_message()
+        return    
     sysarg = event.pattern_match.group(1)
-    if sysarg == chat.user.id:
+    if sysarg == "":
       async with borg.conversation(bot) as conv:
           try:
               await conv.send_message("/start")
@@ -48,8 +46,11 @@ async def _(event):
               await event.delete()
           except YouBlockedUserError:
               await event.edit("**Error:** `unblock` @MissRose_Bot `and try again!")
-    elif "" in sysarg:
-      async with borg.conversation(bot) as conv:
+    elif
+       if event.reply_to_msg_id:
+            r_msg = await event.get_reply_message()
+            if sysarg == r_msg.used.id:
+                async with borg.conversation(bot) as conv:
           try:
               await conv.send_message("/start")
               response = await conv.get_response()
@@ -60,4 +61,3 @@ async def _(event):
               await event.delete()
           except YouBlockedUserError:
               await event.edit("**Error:** `unblock` @MissRose_Bot `and try again!")
-   
