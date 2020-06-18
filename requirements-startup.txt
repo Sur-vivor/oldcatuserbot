@@ -54,6 +54,11 @@ speedtest-cli
 spotify_token
 sqlalchemy
 telegraph
+tswift
 urbandict
 wikipedia
 youtube-dl
+
+
+
+
