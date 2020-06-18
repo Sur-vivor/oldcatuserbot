@@ -738,15 +738,6 @@ async def killing (killed):
 		"#Sad_Reacts_Onli\n"
             )
 
-@register(outgoing=True, pattern="^.bt$")
-async def bluetext(bte):
-    """ Believe me, you will find this useful. """
-    if not bte.text[0].isalpha() and bte.text[0] not in ("/", "#", "@", "!"):
-        if await bte.get_reply_message():
-            await bte.edit(
-                "`BLUETEXT MUST CLICK.`\n"
-                "`Are you a stupid animal which is attracted to colours?`"
-            )
 		     
 @register(outgoing=True, pattern="^.rape$")
 async def raping (raped):
@@ -918,9 +909,6 @@ async def claptext(memereview):
         await memereview.edit(reply_text)
 
 
-
-
-
 @register(outgoing=True, pattern="^.smk (.*)")
 async def smrk(smk):
         if not smk.text[0].isalpha() and smk.text[0] not in ("/", "#", "@", "!"):
@@ -940,15 +928,24 @@ async def smrk(smk):
              await smk.edit(reply_text)
 
 
-@register(outgoing=True, pattern=r"\.f (.*)")
-async def payf(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        paytext = e.pattern_match.group(1)
-        pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(paytext*5, paytext*1,paytext*1, paytext*4, paytext*1, paytext*1, paytext*1)
-        await e.edit(pay)
+@borg.on(admin_cmd(pattern="ftext ?(.*)"))
+async def payf(event):
+    paytext = event.pattern_match.group(1)
+    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+        paytext * 8, paytext * 8, paytext * 2, paytext * 2, paytext * 2,
+        paytext * 6, paytext * 6, paytext * 2, paytext * 2, paytext * 2,
+        paytext * 2, paytext * 2)
+    await event.edit(pay)
 
-
-@register(outgoing=True, pattern="^.lfy (.*)",)
+@borg.on(admin_cmd(outgoing=True, pattern="bt"))
+async def bluetext(bt_e):
+    """ Believe me, you will find this useful. """
+    if await bt_e.get_reply_message() and bt_e.is_group:
+        await bt_e.edit(
+            "/BLUETEXT /MUST /CLICK.\n"
+            "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?")
+			  
+@borg.on(admin_cmd(outgoing=True, pattern="lfy (.*)",))
 async def let_me_google_that_for_you(lmgtfy_q):
     if not lmgtfy_q.text[0].isalpha() and lmgtfy_q.text[0] not in ("/", "#", "@", "!"):
         textx = await lmgtfy_q.get_reply_message()
@@ -971,7 +968,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
 
 
 			  
-@register(pattern='.type(?: |$)(.*)')
+@borg.on(admin_cmd(pattern="type (.*)"))
 async def typewriter(typew):
     """ Just a small command to make your keyboard become a typewriter! """
     if not typew.text[0].isalpha() and typew.text[0] not in ("/", "#", "@", "!"):
@@ -1038,7 +1035,7 @@ CMD_HELP.update({
 \nUsage: Haha yes\
 \n\n.clap\
 \nUsage: Praise people!\
-\n\n.f <emoji/character>\
+\n\n.ftext <emoji/character>\
 \nUsage: Pay Respects.\
 \n\n.smk <text/reply>\
 \nUsage: A shit module for ツ , who cares.\
@@ -1066,5 +1063,6 @@ CMD_HELP.update({
 \nUsage: if you are gey.\
 \n\n.pkill\
 \n\n.bt\
+\nUsage: Believe me, you will find this useful.\
 "
 })
