@@ -8,6 +8,10 @@ from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
 from pySmartDL import SmartDL
 from dotenv import load_dotenv
+import asyncio
+from userbot.helpers import memeshelper as memes
+import pylast
+from pySmartDL import SmartDL
 from requests import get
 
 os.system("pip install --upgrade pip")
@@ -30,12 +34,7 @@ LOAD_PLUG = {}
 ENV = os.environ.get("ENV", False)
 """ PPE initialization. """
 
-from logging import basicConfig, getLogger, INFO, DEBUG
-from distutils.util import strtobool as sb
-import asyncio
-import pylast
-from pySmartDL import SmartDL
-from requests import get
+
 # Bot Logs setup:
 if bool(ENV):
     CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
@@ -114,7 +113,7 @@ if bool(ENV):
     MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 5))
     UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
-    "https://github.com/Sur-vivor/CatUserbot.git")
+    "https://github.com/sandy1709/catuserbot.git")
     
     # Time & Date - Country and Time Zone
     COUNTRY = str(os.environ.get("COUNTRY", ""))
