@@ -7,12 +7,12 @@ import asyncio
 from asyncio import wait, sleep
 from userbot.utils import admin_cmd
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from userbot.utils import register
+from userbot.utils import admin_cmd
 BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
 BOTLOG = True
 
 
-@register(outgoing=True, pattern="^.cspam (.*)")
+@borg.on(admin_cmd("cspam ?(.*)"))
 async def tmeme(e):
     cspam = str(e.pattern_match.group(1))
     message = cspam.replace(" ", "")
@@ -24,7 +24,7 @@ async def tmeme(e):
             BOTLOG_CHATID, "#CSPAM\n"
             "TSpam was executed successfully")
         
-@register(outgoing=True, pattern="^.bigspam")
+@borg.on(admin_cmd("bigspam ?(.*)")
 async def bigspam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
@@ -40,7 +40,7 @@ async def bigspam(e):
                 "Bigspam was executed successfully"
                 )
 
-@register(outgoing=True, pattern="^.wspam (.*)")
+@borg.on(admin_cmd("wspam ?(.*)"))
 async def tmeme(e):
     wspam = str(e.pattern_match.group(1))
     message = wspam.split()
@@ -53,7 +53,7 @@ async def tmeme(e):
             "WSpam was executed successfully")
 
 
-@register(outgoing=True, pattern="^.spam (.*)")
+@borg.on(admin_cmd("spam ?(.*)"))
 async def spammer(e):
     counter = int(e.pattern_match.group(1).split(' ', 1)[0])
     spam_message = str(e.pattern_match.group(1).split(' ', 1)[1])
@@ -64,7 +64,7 @@ async def spammer(e):
                                     "Spam was executed successfully")
 
 
-@register(outgoing=True, pattern="^.picspam")
+@borg.on(admin_cmd("picspam ?(.*)"))
 async def tiny_pic_spam(e):
     message = e.text
     text = message.split()
@@ -79,7 +79,7 @@ async def tiny_pic_spam(e):
             "PicSpam was executed successfully")
 
 
-@register(outgoing=True, pattern="^.delayspam (.*)")
+@borg.on(admin_cmd("delayspam ?(.*)"))
 async def spammer(e):
     spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
     counter = int(e.pattern_match.group(1).split(' ', 2)[1])
