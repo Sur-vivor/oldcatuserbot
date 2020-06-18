@@ -16,7 +16,7 @@ from userbot import CMD_HELP, LOGS
 GENIUS = os.environ.get("GENIUS_API_TOKEN", None)
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="lyrics(?: |$)(.*)"))
+@borg.on(admin_cmd(outgoing=True, pattern="getlyrics(?: |$)(.*)"))
 async def lyrics(lyric):
     if r"-" in lyric.text:
         pass
@@ -91,13 +91,13 @@ async def pressf(f):
 
 
 CMD_HELP.update({
-    "lyrics":
-    "**Usage:** .`lyrics <artist name> - <song name>`\n"
+    "lyrics2":
+    "**Usage:** .`getlyrics <artist name> - <song name>`\n"
     "__note__: **-** is neccessary when searching the lyrics to divided artist and song \n"
 "Genius lyrics plugin \n"
  "get this value from https://genius.com/developers \n"
 
 "Add:-  GENIUS_API_TOKEN and token value in heroku app settings \n"
  
-"Lyrics Plugin Syntax: .lyrics <aritst name - song nane>"
+"Lyrics Plugin Syntax: .getlyrics <aritst name - song nane>"
 })
