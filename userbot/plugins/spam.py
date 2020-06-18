@@ -24,7 +24,7 @@ async def tmeme(e):
             BOTLOG_CHATID, "#CSPAM\n"
             "TSpam was executed successfully")
         
-@borg.on(admin_cmd("bigspam ?(.*)")
+@borg.on(admin_cmd("bigspam ?(.*)"))
 async def bigspam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
